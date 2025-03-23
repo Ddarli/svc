@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/Ddarli/svc/gateway/conf"
-	"github.com/gofiber/fiber/v2"
+	"github.com/Ddarli/svc/gateway/internal/app"
 	"github.com/spf13/viper"
 	"log"
 )
@@ -10,9 +10,7 @@ import (
 func main() {
 	cfg := initConfig()
 
-	app := fiber.New()
-
-	log.Fatal(app.Listen(":" + cfg.Server.Port))
+	app.Run(&cfg)
 }
 
 func initConfig() conf.Conf {
@@ -23,11 +21,11 @@ func initConfig() conf.Conf {
 	viper.AddConfigPath("./conf")
 
 	if err := viper.ReadInConfig(); err != nil {
-		log.Fatalf("Ошибка чтения конфигурации: %v", err)
+		log.Fatalf("Error reading configuration: %v", err)
 	}
 
 	if err := viper.Unmarshal(&config); err != nil {
-		log.Fatalf("Ошибка загрузки конфигурации: %v", err)
+		log.Fatalf("Error loading configuration: %v", err)
 	}
 
 	return config
