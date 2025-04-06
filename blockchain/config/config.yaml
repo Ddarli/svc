@@ -1,0 +1,6 @@
+server:
+  port: ":5002"
+  mode: "release"
+
+contractAddress: "0xB0004FB4ba88D42c2C5374D3A6a541A0a56919ed"
+host: "http://localhost:7545"

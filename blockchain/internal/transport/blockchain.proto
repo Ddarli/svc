@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package medical;
+
+option go_package = "./medicalpb";
+
+service MedicalService {
+  rpc GenerateNewAccount (Empty) returns (AccountResponse);
+  rpc DepositAccount (DepositRequest) returns (Empty);
+  rpc AddMedicalRecord (MedicalRecordRequest) returns (TransactionResponse);
+  rpc GetRecord (GetRecordRequest) returns (GetRecordResponse);
+  rpc GrantAccess (AccessRequest) returns (TransactionResponse);
+  rpc RevokeAccess (AccessRequest) returns (TransactionResponse);
+}
+///////////////////////////////////////////////////
+
+message Empty {}
+
+message DepositRequest {
+  string to_address = 1;
+  string private_key = 2;
+}
+
+message MedicalRecordRequest {
+  string private_key = 1;
+  string data_hash = 2;
+}
+
+message GetRecordRequest {
+  string data_hash = 1;
+}
+
+message AccessRequest {
+  string address = 1;
+  string data_hash = 2;
+  string private_key = 3;
+}
+///////////////////////////////////////////////////
+message AccountResponse {
+  string private_key = 1;
+  string address = 2;
+}
+
+message TransactionResponse {
+  string transaction_hash = 1;
+}
+
+message GetRecordResponse {
+  string owner = 1;
+  int64 timestamp = 2;
+  repeated string authorized_addresses = 3;
+}

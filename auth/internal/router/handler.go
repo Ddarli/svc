@@ -12,7 +12,12 @@ func (r *Router) handleAuth(ctx *fiber.Ctx) error {
 		return ctx.Status(400).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	return ctx.SendStatus(200)
+	token, err := r.service.Authorize(ctx.Context(), req)
+	if err != nil {
+		ctx.SendStatus(401)
+	}
+
+	return ctx.SendString(token)
 }
 
 func (r *Router) handleRegister(ctx *fiber.Ctx) error {
@@ -22,10 +27,10 @@ func (r *Router) handleRegister(ctx *fiber.Ctx) error {
 		return ctx.Status(400).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	err := r.service.NewUser(ctx.Context(), req)
-	if err != nil {
-		return ctx.Status(500).JSON(fiber.Map{"error": err.Error()})
-	}
+	//err := r.service.Register(ctx.Context(), req)
+	//if err != nil {
+	//	return ctx.Status(500).JSON(fiber.Map{"error": err.Error()})
+	//}
 
 	return ctx.SendStatus(200)
 }

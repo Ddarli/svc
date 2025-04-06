@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"github.com/Ddarli/svc/gateway/conf"
 	"github.com/Ddarli/svc/gateway/internal/app"
 	"github.com/spf13/viper"
@@ -10,7 +11,7 @@ import (
 func main() {
 	cfg := initConfig()
 
-	app.Run(&cfg)
+	app.Run(context.Background(), &cfg)
 }
 
 func initConfig() conf.Conf {

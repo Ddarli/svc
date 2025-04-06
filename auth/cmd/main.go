@@ -3,6 +3,7 @@ package main
 import (
 	"auth/conf"
 	"auth/internal/app"
+	"context"
 	"github.com/spf13/viper"
 	"log"
 )
@@ -10,7 +11,7 @@ import (
 func main() {
 	cfg := initConfig()
 
-	app.Run(cfg)
+	app.Run(context.Background(), cfg)
 }
 
 func initConfig() *conf.Configuration {
