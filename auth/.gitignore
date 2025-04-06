@@ -1,4 +1,4 @@
 .idea/
-conf/
+conf/*.yaml
 
 .gitignore
