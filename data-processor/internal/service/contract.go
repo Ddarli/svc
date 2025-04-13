@@ -11,9 +11,10 @@ type (
 	repo interface {
 		SelectMedicalDataByUserID(ctx context.Context, userID uuid.UUID) ([]entities.MedicalData, error)
 		InsertMedicalData(ctx context.Context, file entities.MedicalData) error
+		SelectByID(ctx context.Context, id string) (entities.MedicalData, error)
 	}
 	storage interface {
-		PutData(bucket, key string, body io.ReadSeeker) error
-		GetData(bucketName, key string) error
+		PutData(key string, body io.ReadSeeker) error
+		GetData(key string) ([]byte, error)
 	}
 )

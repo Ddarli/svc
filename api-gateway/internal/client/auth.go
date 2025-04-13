@@ -13,7 +13,7 @@ type AuthClient struct {
 }
 
 func New(ctx context.Context, cfg *Config) *AuthClient {
-	client, err := createClient(ctx, cfg.AuthClient.Port)
+	client, err := createAuthClient(ctx, cfg.AuthClient.Port)
 	if err != nil {
 		slog.Error(err.Error())
 		return nil
@@ -61,7 +61,7 @@ func (a *AuthClient) Register(ctx context.Context, req *pb.RegisterRequest) (*do
 	return response, nil
 }
 
-func createClient(ctx context.Context, port string) (pb.AuthServiceClient, error) {
+func createAuthClient(ctx context.Context, port string) (pb.AuthServiceClient, error) {
 	conn, err := grpc.Dial(port, grpc.WithInsecure())
 	if err != nil {
 		return nil, err
@@ -69,7 +69,7 @@ func createClient(ctx context.Context, port string) (pb.AuthServiceClient, error
 
 	client := pb.NewAuthServiceClient(conn)
 
-	slog.InfoContext(ctx, "run auth client on", "port", port)
+	slog.InfoContext(ctx, "listening auth client on", "port", port)
 
 	return client, nil
 }

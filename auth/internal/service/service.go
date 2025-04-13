@@ -1,7 +1,6 @@
 package service
 
 import (
-	"auth/internal/client/blockchain"
 	"auth/internal/model"
 	"auth/pkg/transport/medicalpb"
 	"context"
@@ -16,16 +15,16 @@ import (
 type Service struct {
 	repo      Repository
 	conf      ServiceConf
-	bchClient *blockchain.BlockChainClient
+	bchClient BlockchainProcessor
 }
 
-func NewService(repo Repository, conf ServiceConf, bchClient *blockchain.BlockChainClient) *Service {
+func NewService(repo Repository, conf ServiceConf, bchClient BlockchainProcessor) *Service {
 	return &Service{repo: repo, conf: conf, bchClient: bchClient}
 }
 
 func (s *Service) Register(ctx context.Context, request model.RegisterRequest) (token string, err error) {
 	user := model.RequestToUser(request)
-	user.ID = uuid.New()
+	user.ID = request.ID
 
 	user.Password, err = model.HashPassword(user.Password)
 	if err != nil {
@@ -104,6 +103,8 @@ func (s *Service) ValidateToken(ctx context.Context, tokenString string) (uuid.U
 			return user.ID, nil
 		}
 	}
+
+	slog.Info("successfully validated token", "username", claims["username"])
 
 	return uuid.Nil, nil
 }

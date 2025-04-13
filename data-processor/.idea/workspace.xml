@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="$TESTCONTAINERS_RYUK_DISABLED$" id="80d84e69-0242-461d-8ffe-44ddabac3574" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../api-gateway/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/internal/client/data.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/pkg/proto/service.pb.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-gateway/pkg/proto/service_grpc.pb.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../auth/internal/service/service_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/domain/domain.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/service.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/internal/app/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/internal/app/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/internal/client/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/internal/client/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/internal/client/cfg.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/internal/client/cfg.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/internal/domain/domain.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/internal/domain/domain.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/internal/handler/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/internal/handler/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-gateway/internal/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../api-gateway/internal/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/internal/grpc/AuthServer.go" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/internal/grpc/AuthServer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/internal/model/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/internal/model/model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/internal/repo/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/internal/repo/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/internal/service/contract.go" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/internal/service/contract.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/internal/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/internal/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blockchain/pkg/contract/MedicalData.sol" beforeDir="false" afterPath="$PROJECT_DIR$/../blockchain/pkg/contract/MedicalData.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/entities/entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/entities/entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/migrations/insert.sql" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/migrations/insert.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/queries.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/queries.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/repository/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/repository/repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/contract.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/contract.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/storage/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/storage/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/transport/service.proto" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="$TESTCONTAINERS_RYUK_DISABLED$" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.windows-amd64" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2vSjuAjUinJJPzKVbZTHPsZ0doN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="$TESTCONTAINERS_RYUK_DISABLED$" />
+    <option name="showLibraryContents" value="$TESTCONTAINERS_RYUK_DISABLED$" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Studying/vkr_services/data-processor&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Studying\vkr_services\data-processor\pkg" />
+      <recent name="D:\Studying\vkr_services\data-processor\pkg\data-processor\proto" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="$TESTCONTAINERS_RYUK_DISABLED$" transferred="$TESTCONTAINERS_RYUK_DISABLED$" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>$TESTCONTAINERS_RYUK_DISABLED$</settings-migrated>
+  </component>
+</project>

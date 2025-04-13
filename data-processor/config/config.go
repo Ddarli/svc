@@ -5,7 +5,6 @@ type Config struct {
 		Port string
 		Mode string
 	}
-
 	Storage struct {
 		Bucket   string
 		SecretID string

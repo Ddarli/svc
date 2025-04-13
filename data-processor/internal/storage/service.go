@@ -8,12 +8,12 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"io"
-	"os"
-	"path"
+	"log/slog"
 )
 
 type StorageService struct {
 	client *s3.S3
+	cfg    config.Config
 }
 
 func New(config config.Config) *StorageService {
@@ -22,20 +22,22 @@ func New(config config.Config) *StorageService {
 		Endpoint:         aws.String("s3.eu-central-003.backblazeb2.com"),
 		S3ForcePathStyle: aws.Bool(true),
 		Credentials: credentials.NewStaticCredentials(
-			"0030b235a057b230000000002",
-			"K003HKX3VLdwXwW9TKG6M3x666AZcC8",
+			config.Storage.SecretID,
+			config.Storage.Secret,
 			"",
 		),
 	}))
 
 	client := s3.New(sess)
 
-	return &StorageService{client: client}
+	return &StorageService{client: client, cfg: config}
 }
 
-func (s *StorageService) PutData(bucket, key string, body io.ReadSeeker) error {
+func (s *StorageService) PutData(key string, body io.ReadSeeker) error {
+	slog.Info("putting data to storage", "key", key)
+
 	_, err := s.client.PutObject(&s3.PutObjectInput{
-		Bucket: aws.String(bucket),
+		Bucket: aws.String(s.cfg.Storage.Bucket),
 		Key:    aws.String(key),
 		Body:   body,
 	})
@@ -43,28 +45,22 @@ func (s *StorageService) PutData(bucket, key string, body io.ReadSeeker) error {
 	return err
 }
 
-func (s *StorageService) GetData(bucketName, key string) error {
+func (s *StorageService) GetData(key string) ([]byte, error) {
+	slog.Info("getting data to storage", "key", key)
+
 	output, err := s.client.GetObject(&s3.GetObjectInput{
-		Bucket: aws.String(bucketName),
+		Bucket: aws.String(s.cfg.Storage.Bucket),
 		Key:    aws.String(key),
 	})
 	if err != nil {
-		return fmt.Errorf("error get file from storage: %v", err)
+		return nil, fmt.Errorf("error get file from storage: %v", err)
 	}
 	defer output.Body.Close()
 
-	fileName := path.Base(key)
-
-	file, err := os.Create(fmt.Sprintf("./%s", fileName))
+	data, err := io.ReadAll(output.Body)
 	if err != nil {
-		return fmt.Errorf("error creating file: %v", err)
-	}
-	defer file.Close()
-
-	_, err = io.Copy(file, output.Body)
-	if err != nil {
-		return fmt.Errorf("error writing file: %v", err)
+		return nil, fmt.Errorf("error reading object body: %v", err)
 	}
 
-	return nil
+	return data, nil
 }

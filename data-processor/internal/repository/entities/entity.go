@@ -11,6 +11,7 @@ type MedicalData struct {
 	FileName      string    `db:"file_name"`
 	FileSize      int       `db:"file_size"`
 	FileExtension string    `db:"file_extension"`
+	Description   string    `db:"description"`
 	MimeType      string    `db:"mime_type"`
 	S3Key         string    `db:"s3_key"`
 	Hash          string    `db:"hash"`

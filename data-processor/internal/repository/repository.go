@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/rotisserie/eris"
 	"log"
 )
 
@@ -18,7 +19,7 @@ func NewRepo(db *pgxpool.Pool) *repo {
 }
 
 func (r *repo) InsertMedicalData(ctx context.Context, file entities.MedicalData) error {
-	_, err := r.db.Exec(ctx, insertRecord, file.ID, file.UserID, file.FileName, file.FileSize, file.MimeType, file.S3Key, file.Hash)
+	_, err := r.db.Exec(ctx, insertRecord, file.ID, file.UserID, file.FileName, file.Description, file.FileSize, file.MimeType, file.S3Key, file.Hash)
 	if err != nil {
 		log.Printf("Error inserting new user: %v", err)
 	}
@@ -37,7 +38,7 @@ func (r *repo) SelectMedicalDataByUserID(ctx context.Context, userID uuid.UUID) 
 	for rows.Next() {
 		var record entities.MedicalData
 
-		err := rows.Scan(&record.ID, &record.UserID, &record.FileName, &record.FileSize, &record.MimeType, &record.S3Key, &record.Hash)
+		err := rows.Scan(&record.ID, &record.UserID, &record.FileName, &record.Description, &record.FileSize, &record.MimeType, &record.S3Key, &record.Hash)
 		if err != nil {
 			return []entities.MedicalData{}, fmt.Errorf("error fetching data from database: %v", err)
 		}
@@ -46,4 +47,20 @@ func (r *repo) SelectMedicalDataByUserID(ctx context.Context, userID uuid.UUID) 
 	}
 
 	return records, nil
+}
+
+func (r *repo) SelectByID(ctx context.Context, id string) (entities.MedicalData, error) {
+	if id == "" {
+		return entities.MedicalData{}, eris.New("id is empty")
+	}
+	row := r.db.QueryRow(ctx, selectByID, id)
+
+	var record entities.MedicalData
+
+	err := row.Scan(&record.ID, &record.UserID, &record.FileName, &record.Description, &record.FileSize, &record.MimeType, &record.S3Key, &record.Hash)
+	if err != nil {
+		return entities.MedicalData{}, eris.Wrapf(err, "error in repoository")
+	}
+
+	return record, nil
 }

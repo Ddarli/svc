@@ -55,6 +55,44 @@ type (
 	RegisterResponse struct {
 		Token string
 	}
+
+	DownloadFileRequest struct {
+		UserID string
+		FileID string
+	}
+
+	DownloadFileResponse struct {
+		FileName string
+		MimeType string
+		FileData []byte
+	}
+
+	UploadFileRequest struct {
+		UserID      string
+		FileName    string
+		MimeType    string
+		FileData    []byte
+		Description string
+	}
+
+	UploadFileResponse struct {
+		Message string
+	}
+
+	ListUserFileRequest struct {
+		UserID string
+	}
+
+	ListUserFilesResponse struct {
+		FilesMetadata []FileMetadata
+	}
+
+	FileMetadata struct {
+		ID          string
+		UserID      string
+		FileName    string
+		Description string
+	}
 )
 
 func ProtoLoginResponseToModel(resp *pb.LoginResponse) *LoginResponse {

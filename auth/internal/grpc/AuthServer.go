@@ -33,6 +33,7 @@ func (s *AuthServer) Login(ctx context.Context, request *pb.LoginRequest) (*pb.L
 
 func (s *AuthServer) Register(ctx context.Context, request *pb.RegisterRequest) (*pb.RegisterResponse, error) {
 	token, err := s.service.Register(ctx, model.RegisterRequest{
+		ID:       uuid.New(),
 		Username: request.Username,
 		Email:    request.Email,
 		Password: request.Password,

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package fileservice;
+
+option go_package = "data-processor/proto/fileservice";
+
+message UploadUserFileRequest {
+  string user_id = 1;
+  string file_name = 2;
+  string mime_type = 3;
+  bytes file_data = 4;
+  string description = 5;
+}
+
+message UploadUserFileResponse {
+  string message = 1;
+}
+
+message ListUserFilesRequest {
+  string user_id = 1;
+}
+
+message FileMetadata {
+  string file_id = 1;
+  string file_name = 2;
+  string description = 3;
+  string status = 4;
+}
+
+message ListUserFilesResponse {
+  repeated FileMetadata files = 1;
+}
+
+message DownloadUserFileRequest {
+  string user_id = 1;
+  string file_id = 2;
+}
+
+message DownloadUserFileResponse {
+  string file_name = 1;
+  string mime_type = 2;
+  bytes file_data = 3;
+}
+
+service FileService {
+  rpc UploadUserFile(UploadUserFileRequest) returns (UploadUserFileResponse);
+
+  rpc ListUserFiles(ListUserFilesRequest) returns (ListUserFilesResponse);
+
+  rpc DownloadUserFile(DownloadUserFileRequest) returns (DownloadUserFileResponse);
+}

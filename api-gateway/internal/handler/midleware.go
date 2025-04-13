@@ -6,7 +6,10 @@ import (
 	"strings"
 )
 
-var prefix = "Bearer "
+const (
+	prefix   = "Bearer "
+	cookieID = "user_id"
+)
 
 func (r *router) jwtProtected() fiber.Handler {
 	return func(c *fiber.Ctx) error {
@@ -33,4 +36,17 @@ func (r *router) jwtProtected() fiber.Handler {
 
 		return c.Next()
 	}
+}
+
+func (r *router) cookieAuthMiddleware(ctx *fiber.Ctx) error {
+	userID := ctx.Cookies(cookieID)
+	if userID == "" {
+		return ctx.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": "User ID cookie missing",
+		})
+	}
+
+	ctx.Locals(cookieID, userID)
+
+	return ctx.Next()
 }

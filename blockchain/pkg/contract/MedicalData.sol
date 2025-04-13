@@ -14,7 +14,6 @@ contract MedicalDataRegistry {
     event RecordAdded(address indexed owner, string dataHash, uint256 timestamp);
     event AddressAuthorized(string dataHash, address indexed authorizedAddress);
 
-    // Добавление медицинской записи
     function addMedicalRecord(string memory _dataHash) public {
         require(bytes(records[_dataHash].dataHash).length == 0, "Record already exists");
 
@@ -35,7 +34,6 @@ contract MedicalDataRegistry {
         emit AddressAuthorized(_dataHash, msg.sender);
     }
 
-    // Получение записи
     function getRecord(string memory _dataHash) public view returns (address owner, uint256 timestamp, address[] memory authorizedAddresses) {
         require(bytes(records[_dataHash].dataHash).length > 0, "Record not found");
 
@@ -43,14 +41,12 @@ contract MedicalDataRegistry {
         return (record.owner, record.timestamp, record.authorizedAddresses);
     }
 
-    // Добавление адреса в список авторизованных
     function authorizeAddress(string memory _dataHash, address _address) public {
         require(msg.sender == records[_dataHash].owner, "Only the owner can authorize addresses");
         records[_dataHash].authorizedAddresses.push(_address);
         emit AddressAuthorized(_dataHash, _address);
     }
 
-    // Удаление адреса из списка авторизованных
     function revokeAddress(string memory _dataHash, address _address) public {
         require(msg.sender == records[_dataHash].owner, "Only the owner can revoke addresses");
 
